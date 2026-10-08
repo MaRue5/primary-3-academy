@@ -1,0 +1,3248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EeduVerse Primary 3</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:linear-gradient(180deg,#fff7fd,#f4fbff,#fffdf4);
+  font-family:Arial,sans-serif;
+  color:#29334d;
+}
+
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:#ffffffee;
+  border-bottom:1px solid #eee6ff;
+  padding:12px;
+}
+
+.head{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.brand{
+  font-size:22px;
+  font-weight:900;
+}
+
+.logo{
+  display:inline-grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:#7657e8;
+  color:white;
+  margin-right:7px;
+}
+
+nav{
+  display:flex;
+  gap:6px;
+  flex:1;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+nav button{
+  background:#f2efff;
+  color:#6247c9;
+  border-radius:12px;
+  padding:9px 12px;
+  font-weight:800;
+}
+
+nav button.active{
+  background:#7657e8;
+  color:white;
+}
+
+.pill{
+  background:#fff4bd;
+  padding:8px 11px;
+  border-radius:12px;
+  font-weight:900;
+}
+
+main{
+  max-width:1200px;
+  margin:auto;
+  padding:22px 15px 60px;
+}
+
+.view{display:none}
+.view.active{display:block}
+
+.hero{
+  display:grid;
+  grid-template-columns:1.4fr .6fr;
+  gap:18px;
+  background:linear-gradient(135deg,#eee7ff,#fff0f7,#eaf8ff);
+  padding:28px;
+  border-radius:28px;
+  box-shadow:0 12px 35px #4b3d8d18;
+}
+
+.hero h1{
+  font-size:42px;
+  margin:8px 0;
+}
+
+.hero p{
+  font-size:18px;
+  line-height:1.6;
+  color:#667085;
+}
+
+.teacher{
+  background:white;
+  border-radius:24px;
+  display:grid;
+  place-items:center;
+  font-size:90px;
+  min-height:180px;
+}
+
+.section{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:10px;
+  margin:28px 0 13px;
+}
+
+.section h2{
+  margin:0;
+  font-size:28px;
+}
+
+.muted{color:#687184}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.card{
+  background:white;
+  border:1px solid #eee7ff;
+  border-radius:21px;
+  padding:18px;
+  box-shadow:0 10px 28px #51418b12;
+}
+
+.subject{min-height:195px}
+
+.emoji{font-size:40px}
+
+.bar{
+  height:9px;
+  background:#eeeaf7;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.bar i{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,#7657e8,#ff72ad);
+  border-radius:20px;
+}
+
+.primary{
+  background:linear-gradient(135deg,#7657e8,#9a79ff);
+  color:white;
+  padding:11px 15px;
+  border-radius:13px;
+  font-weight:900;
+}
+
+.secondary{
+  background:#f1edff;
+  color:#6046c6;
+  padding:10px 13px;
+  border-radius:12px;
+  font-weight:900;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.schedule{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  background:#fff;
+  border:1px solid #eee7ff;
+  padding:13px;
+  border-radius:15px;
+  margin:8px 0;
+}
+
+.time{
+  font-weight:900;
+  color:#7657e8;
+  min-width:72px;
+}
+
+.tag{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:9px;
+  background:#edf7ff;
+  color:#3574aa;
+  font-size:12px;
+  font-weight:800;
+}
+
+.empty{
+  text-align:center;
+  padding:28px;
+  background:#fff;
+  border:1px dashed #d8cff4;
+  border-radius:18px;
+  color:#687184;
+}
+
+.form{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+label{
+  display:block;
+  font-weight:800;
+  font-size:13px;
+  margin-bottom:5px;
+}
+
+input,select{
+  width:100%;
+  padding:11px;
+  border:1px solid #ddd6ef;
+  border-radius:12px;
+  background:white;
+  color:#29334d;
+}
+
+.teacherbox{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  background:linear-gradient(135deg,#fff8d7,#f0eaff);
+  padding:17px;
+  border-radius:21px;
+  margin-bottom:14px;
+}
+
+.face{font-size:55px}
+
+.lesson{
+  background:white;
+  padding:24px;
+  border-radius:25px;
+  box-shadow:0 13px 38px #4b3d8d18;
+}
+
+.lesson p,
+.lesson li{
+  font-size:17px;
+  line-height:1.65;
+}
+
+.example{
+  padding:14px;
+  background:#edf9ff;
+  border-left:5px solid #51a7f9;
+  border-radius:10px;
+}
+
+.tip{
+  padding:14px;
+  background:#fff8d7;
+  border-left:5px solid #ffd45c;
+  border-radius:10px;
+  margin-top:12px;
+}
+
+.option{
+  width:100%;
+  text-align:left;
+  background:white;
+  border:2px solid #eee8ff;
+  padding:13px;
+  border-radius:13px;
+  margin:7px 0;
+  font-weight:800;
+}
+
+.option.correct{
+  background:#ebfff2;
+  border-color:#58c985;
+}
+
+.option.wrong{
+  background:#fff0f2;
+  border-color:#ff8495;
+}
+
+.feedback{
+  padding:13px;
+  border-radius:13px;
+  margin-top:10px;
+  font-weight:800;
+}
+
+.ok{
+  background:#e9fff0;
+  color:#217d45;
+}
+
+.no{
+  background:#fff0f2;
+  color:#a3314a;
+}
+
+.wordgrid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+  margin-top:12px;
+}
+
+.wordbtn{
+  background:#f2efff;
+  color:#6247c9;
+  padding:11px;
+  border-radius:12px;
+  font-weight:800;
+}
+
+.word{
+  font-size:37px;
+  margin:7px 0;
+}
+
+.badge{
+  display:inline-block;
+  background:#fff7d0;
+  padding:11px 14px;
+  border-radius:14px;
+  margin:5px;
+  font-weight:900;
+}
+
+footer{
+  text-align:center;
+  color:#778095;
+  padding:25px;
+}
+
+.toast{
+  display:none;
+  position:fixed;
+  right:15px;
+  bottom:15px;
+  background:#29334d;
+  color:white;
+  padding:13px 16px;
+  border-radius:13px;
+  z-index:20;
+  font-weight:800;
+}
+
+@media(max-width:850px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .hero{grid-template-columns:1fr}
+  .wordgrid{grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:580px){
+  .grid,.form{grid-template-columns:1fr}
+  .hero h1{font-size:33px}
+  .wordgrid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="head">
+
+<div class="brand">
+<span class="logo">★</span>EeduVerse
+</div>
+
+<nav>
+<button data-view="home">Home</button>
+<button data-view="subjects">Subjects</button>
+<button data-view="dictionary">Dictionary</button>
+<button data-view="progress">Progress</button>
+<button data-view="parent">Parent Corner</button>
+</nav>
+
+<span class="pill">⭐ <b id="stars">0</b></span>
+<span class="pill">XP <b id="xp">0</b></span>
+
+</div>
+</header>
+
+<main>
+
+<section id="home" class="view active">
+
+<div class="hero">
+
+<div>
+
+<span class="tag">PRIMARY 3 • LEARNING WORLD</span>
+
+<h1>Learn. Think. Grow. 🌈</h1>
+
+<p>
+Welcome to EeduVerse — a fun learning world with teacher-led lessons,
+thinking questions, a dictionary, progress tracking and a timetable chosen by your parent.
+</p>
+
+<div class="actions">
+
+<button class="primary" id="nextBtn">
+Start next lesson 🚀
+</button>
+
+<button class="secondary" id="challengeBtn">
+Quick Challenge 🎯
+</button>
+
+</div>
+
+</div>
+
+<div class="teacher">
+👩🏽‍🏫
+</div>
+
+</div>
+
+<div class="section">
+
+<div>
+<h2>Today's Plan 📚</h2>
+<p class="muted" id="dateLabel"></p>
+</div>
+
+<button class="secondary" onclick="show('parent')">
+Edit timetable
+</button>
+
+</div>
+
+<div id="today"></div>
+
+<div class="section">
+
+<div>
+<h2>Explore Subjects 🌟</h2>
+<p class="muted">
+Choose any subject for extra practice.
+</p>
+</div>
+
+</div>
+
+<div id="homeSubjects" class="grid"></div>
+
+<div class="section">
+<div>
+<h2>Word of the Day 💬</h2>
+</div>
+</div>
+
+<div id="wordDay"></div>
+
+</section>
+
+
+<section id="subjects" class="view">
+
+<div class="section">
+
+<div>
+<h2>All Subjects 🧠</h2>
+<p class="muted">
+Primary 3 learning areas.
+</p>
+</div>
+
+</div>
+
+<div class="card" style="margin-bottom:14px">
+
+EeduVerse uses the Primary 1–3 subject structure as a guide.
+The lessons and questions inside the app are original Primary 3 practice content
+designed to make learning interactive and enjoyable.
+
+</div>
+
+<div id="subjectsGrid" class="grid"></div>
+
+</section>
+
+
+<section id="dictionary" class="view">
+
+<div class="section">
+
+<div>
+<h2>EeduVerse Dictionary 📖</h2>
+<p class="muted">
+Search, hear and save words.
+</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="actions">
+
+<input
+id="wordInput"
+placeholder="Search a word..."
+style="flex:1"
+>
+
+<button class="primary" id="wordSearch">
+Search
+</button>
+
+</div>
+
+<div id="wordGrid" class="wordgrid"></div>
+
+</div>
+
+<div id="wordResult"></div>
+
+</section>
+
+
+<section id="progress" class="view">
+
+<div class="section">
+
+<div>
+<h2>My Progress 🏆</h2>
+<p class="muted">
+Every completed lesson counts.
+</p>
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<b>XP</b>
+<h2 id="pxp">0</h2>
+</div>
+
+<div class="card">
+<b>Stars</b>
+<h2 id="pstars">0</h2>
+</div>
+
+<div class="card">
+<b>Lessons</b>
+<h2 id="plessons">0</h2>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Subjects</h2>
+</div>
+
+<div id="progressList" class="card"></div>
+
+<div class="section">
+<h2>Badges</h2>
+</div>
+
+<div id="badges"></div>
+
+</section>
+
+
+<section id="parent" class="view">
+
+<div class="section">
+
+<div>
+<h2>Parent Corner 👩🏽‍👧🏽</h2>
+<p class="muted">
+Choose days, times, subjects and lessons.
+</p>
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Add a learning session</h3>
+
+<div class="form">
+
+<div>
+<label>Day</label>
+<select id="day"></select>
+</div>
+
+<div>
+<label>Time</label>
+<input id="time" type="time" value="16:00">
+</div>
+
+<div>
+<label>Subject</label>
+<select id="sub"></select>
+</div>
+
+<div>
+<label>Topic</label>
+<select id="topic"></select>
+</div>
+
+<div>
+<label>Duration</label>
+<select id="duration">
+<option>20</option>
+<option selected>30</option>
+<option>45</option>
+<option>60</option>
+</select>
+</div>
+
+</div>
+
+<br>
+
+<button class="primary" id="add">
+Add to timetable ➕
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>Weekly timetable</h3>
+
+<div id="week"></div>
+
+<button class="secondary" id="clear">
+Clear timetable
+</button>
+
+</div>
+
+</div>
+
+
+<div class="section">
+<h2>Child progress</h2>
+</div>
+
+<div id="parentProgress" class="card"></div>
+
+</section>
+
+
+<section id="lesson" class="view">
+
+<div id="lessonArea"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+EeduVerse Primary 3 • Learn a little, grow a lot 🌟
+</footer>
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+/* =========================
+   EEDUVERSE DATA
+========================= */
+
+const curriculum = {
+
+math:{
+name:"Mathematics",
+emoji:"🔢",
+desc:"Numbers, operations, fractions, measurement and reasoning",
+lessons:[
+{
+title:"Place Value",
+teach:"Place value tells us the value of a digit because of where it is in a number.",
+example:"In 4,582, the 5 is in the hundreds place, so it represents 500.",
+tip:"Always start from the right when identifying ones, tens and hundreds."
+},
+{
+title:"Addition & Subtraction",
+teach:"Addition combines numbers while subtraction finds the difference between numbers.",
+example:"If a school has 245 books and receives 123 more, 245 + 123 = 368 books.",
+tip:"Line up the digits according to their place values before calculating."
+},
+{
+title:"Multiplication & Division",
+teach:"Multiplication is repeated addition. Division shares a quantity equally.",
+example:"4 × 6 means four groups of six, which gives 24.",
+tip:"Think about equal groups when solving multiplication and division problems."
+},
+{
+title:"Fractions",
+teach:"A fraction shows part of a whole. The top number is the numerator and the bottom number is the denominator.",
+example:"If a pizza is divided into 4 equal pieces and you eat 1 piece, you ate 1/4.",
+tip:"The denominator tells you how many equal parts the whole has."
+},
+{
+title:"Measurement & Time",
+teach:"We use units such as centimetres, metres, litres, kilograms and minutes to measure things.",
+example:"There are 60 minutes in one hour.",
+tip:"Look carefully at the unit before choosing an answer."
+},
+{
+title:"Money & Word Problems",
+teach:"Mathematics helps us solve everyday problems involving money, shopping and change.",
+example:"If an item costs ₦700 and you pay ₦1,000, your change is ₦300.",
+tip:"Read the whole problem before deciding which operation to use."
+}
+]
+},
+
+english:{
+name:"English Studies",
+emoji:"📚",
+desc:"Reading, grammar, vocabulary, spelling and writing",
+lessons:[
+{
+title:"Nouns & Pronouns",
+teach:"A noun names a person, place, animal or thing. A pronoun can take the place of a noun.",
+example:"Ada is happy. She is going to school. 'Ada' is a noun and 'she' is a pronoun.",
+tip:"Ask yourself what or who the word is naming."
+},
+{
+title:"Verbs & Adjectives",
+teach:"A verb shows an action or state. An adjective describes a noun.",
+example:"The small boy ran quickly. 'Small' describes the boy while 'ran' shows an action.",
+tip:"Look for the action first, then look for words that describe people or things."
+},
+{
+title:"Punctuation",
+teach:"Punctuation marks help readers understand sentences.",
+example:"A full stop ends a statement. A question mark ends a question.",
+tip:"Remember that every sentence needs the correct ending mark."
+},
+{
+title:"Comprehension",
+teach:"Comprehension means understanding what you read.",
+example:"Read a passage carefully and use information from it to answer questions.",
+tip:"Do not rush. Look back at the passage when necessary."
+},
+{
+title:"Spelling & Vocabulary",
+teach:"Spelling is writing words correctly, while vocabulary is the collection of words you know and understand.",
+example:"The correct spelling is 'beautiful', not 'butiful'.",
+tip:"Break long words into smaller parts when spelling them."
+},
+{
+title:"Writing",
+teach:"Good writing uses clear sentences, correct punctuation and ideas that follow a sensible order.",
+example:"A paragraph can begin with a main idea and then give details about it.",
+tip:"Plan what you want to say before writing."
+}
+]
+},
+
+science:{
+name:"Basic Science",
+emoji:"🔬",
+desc:"Living things, plants, animals, health, matter and the environment",
+lessons:[
+{
+title:"Living & Non-living Things",
+teach:"Living things carry out life processes such as feeding, growing and reproducing.",
+example:"A dog is living because it grows, feeds and breathes. A stone is non-living.",
+tip:"Ask whether the thing carries out life processes."
+},
+{
+title:"Plants",
+teach:"Plants are living things. They need things such as water, air and suitable light to grow.",
+example:"A bean seed can grow into a plant when it receives suitable conditions.",
+tip:"Remember that roots, stems and leaves have different jobs."
+},
+{
+title:"Animals & Habitats",
+teach:"A habitat is the place where an organism naturally lives.",
+example:"Fish are adapted to living in water, while birds live mainly on land and in trees.",
+tip:"Think about what an animal needs to survive in its environment."
+},
+{
+title:"Human Body & Health",
+teach:"The human body has different parts and systems that work together.",
+example:"The heart pumps blood around the body.",
+tip:"Healthy habits include good hygiene, healthy food, rest and physical activity."
+},
+{
+title:"Matter, Light & Sound",
+teach:"Matter is anything that has mass and takes up space. Light allows us to see, while sound is produced by vibrations.",
+example:"A drum produces sound when its surface vibrates.",
+tip:"Think about what is happening physically rather than guessing."
+},
+{
+title:"Environment & Safety",
+teach:"Our environment includes the places and things around us. We should protect it and behave safely.",
+example:"Putting rubbish in a bin helps keep the environment clean.",
+tip:"Safety means thinking before acting and following sensible rules."
+}
+]
+},
+
+yoruba:{
+name:"Yorùbá",
+emoji:"🗣️",
+desc:"Everyday Yorùbá words, sentences, culture and communication",
+lessons:[
+{
+title:"Greetings",
+teach:"Greetings are an important part of respectful communication in Yorùbá culture.",
+example:"'Ẹ káàárọ̀' is used as a respectful morning greeting.",
+tip:"Use greetings appropriately when speaking to people."
+},
+{
+title:"Family",
+teach:"Yorùbá has words used to describe members of a family.",
+example:"'Ìyá' means mother and 'bàbá' means father.",
+tip:"Practise saying each family word aloud."
+},
+{
+title:"Numbers",
+teach:"Learning numbers helps us count, compare quantities and communicate clearly.",
+example:"'Ọ̀kan' means one.",
+tip:"Practise numbers from one upward regularly."
+},
+{
+title:"Everyday Words",
+teach:"Everyday vocabulary helps us communicate about common objects, people and activities.",
+example:"Knowing the Yorùbá words for common objects makes conversations easier.",
+tip:"Connect each new word with something you see around you."
+},
+{
+title:"Simple Sentences",
+teach:"Simple sentences combine words to communicate a complete idea.",
+example:"A short sentence can tell someone what a person is doing.",
+tip:"Say the sentence slowly and make sure the meaning is clear."
+},
+{
+title:"Culture & Proverbs",
+teach:"Yorùbá culture includes stories, proverbs, greetings, music, art and traditions.",
+example:"Proverbs often teach lessons about wisdom, behaviour and community.",
+tip:"Ask an adult to explain proverbs that are unfamiliar to you."
+}
+]
+},
+
+history:{
+name:"Nigerian History",
+emoji:"🇳🇬",
+desc:"Ibadan, Oyo heritage, national symbols, people and culture",
+lessons:[
+{
+title:"Local History",
+teach:"Local history helps us understand the people, places and events that shaped our communities.",
+example:"Learning about the history of your town helps you understand its traditions.",
+tip:"Ask older family members about stories from the past."
+},
+{
+title:"Ibadan & Oyo Heritage",
+teach:"Ibadan and Oyo have important histories and cultural traditions.",
+example:"Ibadan grew into an important city in southwestern Nigeria.",
+tip:"Learning local history helps us appreciate where we come from."
+},
+{
+title:"National Symbols",
+teach:"National symbols represent a country and help citizens identify with it.",
+example:"Nigeria's flag is green, white and green.",
+tip:"Treat national symbols with respect."
+},
+{
+title:"Important Nigerians",
+teach:"Many Nigerians have contributed to education, science, leadership, arts, sports and national development.",
+example:"Learning about important Nigerians can show how individuals can influence society.",
+tip:"Focus on what each person contributed."
+},
+{
+title:"Culture & Heritage",
+teach:"Heritage includes traditions, languages, art, music, food and customs passed from one generation to another.",
+example:"Traditional festivals can be part of a community's cultural heritage.",
+tip:"Respect cultures while learning about their differences."
+},
+{
+title:"Why History Matters",
+teach:"History helps us understand the past and make better decisions in the future.",
+example:"We can learn from previous events so that useful lessons are not forgotten.",
+tip:"Ask: what can people today learn from this event?"
+}
+]
+},
+
+social:{
+name:"Social & Citizenship Studies",
+emoji:"🤝",
+desc:"Family, community, citizenship, cooperation, safety and responsibility",
+lessons:[
+{
+title:"Family & Community",
+teach:"Families and communities help people live, learn and support one another.",
+example:"Neighbours can work together to keep a shared environment clean.",
+tip:"Think about ways you can contribute positively."
+},
+{
+title:"Rules & Responsibilities",
+teach:"Rules help keep people safe and organised. Responsibilities are duties we are expected to carry out.",
+example:"A pupil has a responsibility to respect school rules.",
+tip:"A good rule should help people live and work together safely."
+},
+{
+title:"Good Citizenship",
+teach:"Good citizens respect others, obey reasonable laws and contribute positively to their community.",
+example:"Helping to protect public property is responsible citizenship.",
+tip:"Ask yourself how your actions affect other people."
+},
+{
+title:"Cooperation",
+teach:"Cooperation means working together toward a shared goal.",
+example:"A group of pupils can cooperate to complete a class project.",
+tip:"Listen to other people's ideas while working together."
+},
+{
+title:"Safety in the Community",
+teach:"Community safety involves making sensible choices and following safety rules.",
+example:"Crossing a busy road should be done carefully and at a safe place.",
+tip:"Do not take unnecessary risks."
+},
+{
+title:"Our Environment",
+teach:"Everyone has a role to play in keeping the environment clean and healthy.",
+example:"Reducing litter helps protect people, animals and the environment.",
+tip:"Small responsible actions can make a big difference."
+}
+]
+},
+
+cca:{
+name:"Cultural & Creative Arts",
+emoji:"🎨",
+desc:"Art, rhythm, singing, instruments, drama and Nigerian culture",
+lessons:[
+{
+title:"Lines & Shapes",
+teach:"Artists use lines and shapes to create pictures and designs.",
+example:"Circles, squares and triangles can be combined to make interesting patterns.",
+tip:"Look for different shapes around you."
+},
+{
+title:"Colour & Painting",
+teach:"Colours can be used to communicate ideas and create attractive artwork.",
+example:"Artists can mix colours to create new shades.",
+tip:"Experiment carefully and observe what happens."
+},
+{
+title:"Rhythm & Beat",
+teach:"Rhythm is a pattern of sounds and beats. Music can be created by repeating rhythms.",
+example:"Clapping steadily can help you keep a beat.",
+tip:"Listen carefully before trying to copy a rhythm."
+},
+{
+title:"Singing & Instruments",
+teach:"Singing uses the human voice, while instruments produce musical sounds in different ways.",
+example:"A drum can be played by striking its surface.",
+tip:"Take care of musical instruments and use them properly."
+},
+{
+title:"Drama & Storytelling",
+teach:"Drama allows people to act out characters and situations.",
+example:"A short classroom play can teach a lesson through characters and dialogue.",
+tip:"Use your voice and facial expressions to communicate."
+},
+{
+title:"Nigerian Arts & Culture",
+teach:"Nigerian arts include traditional music, clothing, crafts, dance, storytelling and visual art.",
+example:"Different Nigerian communities have their own artistic traditions.",
+tip:"Be curious and respectful when learning about culture."
+}
+]
+},
+
+phe:{
+name:"Physical & Health Education",
+emoji:"⚽",
+desc:"Movement, games, hygiene, nutrition, rest and safety",
+lessons:[
+{
+title:"Fitness & Movement",
+teach:"Physical activity helps the body stay active and healthy.",
+example:"Walking, running, stretching and jumping are forms of physical movement.",
+tip:"Warm up and move safely."
+},
+{
+title:"Games & Teamwork",
+teach:"Games can help people develop physical skills and learn cooperation.",
+example:"Football requires players to communicate and work together.",
+tip:"Good teamwork means respecting teammates and opponents."
+},
+{
+title:"Personal Hygiene",
+teach:"Personal hygiene means keeping the body clean and taking care of ourselves.",
+example:"Washing hands before eating can help reduce the spread of germs.",
+tip:"Make good hygiene part of your daily routine."
+},
+{
+title:"Food & Nutrition",
+teach:"Food provides nutrients and energy needed for growth and daily activities.",
+example:"A balanced meal contains different types of foods in suitable amounts.",
+tip:"Eat a variety of healthy foods."
+},
+{
+title:"Rest & Healthy Habits",
+teach:"The body needs enough rest and healthy routines to function well.",
+example:"A regular bedtime can help a child get enough sleep.",
+tip:"Balance schoolwork, play, physical activity and rest."
+},
+{
+title:"Safety Awareness",
+teach:"Safety awareness means recognising dangers and choosing safer actions.",
+example:"Do not play in dangerous places such as busy roads.",
+tip:"If something feels unsafe, seek help from a trusted adult."
+}
+]
+},
+
+values:{
+name:"Religion & National Values",
+emoji:"❤️",
+desc:"Honesty, respect, responsibility, peace, kindness and character",
+lessons:[
+{
+title:"Honesty",
+teach:"Honesty means telling the truth and acting truthfully.",
+example:"If you accidentally break something, being honest means telling the truth about what happened.",
+tip:"Truthfulness builds trust."
+},
+{
+title:"Respect",
+teach:"Respect means treating people, property and yourself with care and good manners.",
+example:"Listening when someone else is speaking shows respect.",
+tip:"Respect can be shown through both words and actions."
+},
+{
+title:"Responsibility",
+teach:"Responsibility means doing the duties you are expected to do.",
+example:"Completing your homework is one example of taking responsibility.",
+tip:"Do your duties without always waiting for someone to remind you."
+},
+{
+title:"Peace & Cooperation",
+teach:"Peace means living without unnecessary conflict, while cooperation means working together.",
+example:"Talking calmly can help people solve disagreements.",
+tip:"Try to understand another person's point of view."
+},
+{
+title:"Community & Citizenship",
+teach:"People have responsibilities toward their families, schools and communities.",
+example:"Helping keep shared spaces clean is a positive community action.",
+tip:"Think about how your actions can help others."
+},
+{
+title:"Kindness & Character",
+teach:"Kindness means treating others with care. Character describes the qualities shown by a person's actions.",
+example:"Helping someone who is struggling can be an act of kindness.",
+tip:"Good character is shown by what you do, not only what you say."
+}
+]
+
+}
+
+};
+
+
+/* =========================
+   QUESTIONS
+========================= */
+
+const Q={
+
+"Mathematics":{
+
+"Place Value":[
+{q:"In 4,582, what is the value of the digit 5?",a:["5","50","500","5,000"],c:2},
+{q:"Which digit is in the tens place in 7,346?",a:["7","3","4","6"],c:2},
+{q:"What is the expanded form of 3,205?",a:["3,000 + 200 + 5","300 + 20 + 5","3,000 + 20 + 5","3,000 + 200 + 50"],c:0},
+{q:"Which number has 8 in the hundreds place?",a:["1,823","8,123","2,813","2,183"],c:0},
+{q:"A number has 6 thousands, 2 hundreds, 4 tens and 9 ones. What is the number?",a:["6,249","6,429","6,294","6,924"],c:2}
+],
+
+"Addition & Subtraction":[
+{q:"A school has 245 books and receives 123 more. How many books are there altogether?",a:["358","368","378","388"],c:1},
+{q:"What is 700 − 258?",a:["432","442","452","462"],c:1},
+{q:"Mummy has ₦1,000 and spends ₦375. How much remains?",a:["₦525","₦625","₦675","₦725"],c:1},
+{q:"What is 348 + 276?",a:["614","624","634","644"],c:1},
+{q:"A class has 420 pupils' exercise books. 185 are used. How many are left?",a:["225","235","245","255"],c:1}
+],
+
+"Multiplication & Division":[
+{q:"What is 7 × 6?",a:["36","42","48","56"],c:1},
+{q:"There are 24 oranges shared equally among 4 children. How many does each child get?",a:["4","5","6","8"],c:2},
+{q:"What is 8 × 5?",a:["30","35","40","45"],c:2},
+{q:"36 ÷ 6 = ?",a:["5","6","7","8"],c:1},
+{q:"There are 5 bags with 7 mangoes in each bag. How many mangoes are there?",a:["30","32","35","40"],c:2}
+],
+
+"Fractions":[
+{q:"Which fraction means one out of four equal parts?",a:["1/2","1/3","1/4","4/1"],c:2},
+{q:"What is the numerator in 3/5?",a:["3","5","8","2"],c:0},
+{q:"Which fraction is larger?",a:["1/2","1/4","1/5","1/8"],c:0},
+{q:"A cake is cut into 6 equal pieces. If 2 pieces are eaten, what fraction was eaten?",a:["1/6","2/6","4/6","6/2"],c:1},
+{q:"Which fraction represents a whole?",a:["1/2","2/3","3/3","1/4"],c:2}
+],
+
+"Measurement & Time":[
+{q:"How many minutes are in one hour?",a:["30","45","60","100"],c:2},
+{q:"Which unit is best for measuring the length of a pencil?",a:["litres","centimetres","kilograms","hours"],c:1},
+{q:"Which is heavier?",a:["1 kg","500 g","250 g","100 g"],c:0},
+{q:"What time is 30 minutes after 2:00?",a:["2:15","2:20","2:30","3:30"],c:2},
+{q:"Which unit would you use to measure the amount of water in a bottle?",a:["litre","metre","kilogram","centimetre"],c:0}
+],
+
+"Money & Word Problems":[
+{q:"An item costs ₦700. You pay ₦1,000. What is your change?",a:["₦200","₦250","₦300","₦400"],c:2},
+{q:"A pen costs ₦150. How much will 2 pens cost?",a:["₦200","₦250","₦300","₦350"],c:2},
+{q:"You have ₦500 and receive ₦250. How much do you have now?",a:["₦650","₦700","₦750","₦800"],c:2},
+{q:"A book costs ₦450 and a pencil costs ₦100. What is the total?",a:["₦500","₦550","₦600","₦650"],c:1},
+{q:"You have ₦1,000 and buy food for ₦650. What remains?",a:["₦250","₦300","₦350","₦400"],c:2}
+]
+
+},
+
+"English Studies":{
+
+"Nouns & Pronouns":[
+{q:"Which word is a noun?",a:["quickly","school","run","beautiful"],c:1},
+{q:"In 'Ada is happy. She is smiling.', which word is the pronoun?",a:["Ada","happy","She","smiling"],c:2},
+{q:"Which word names a person?",a:["teacher","jump","quickly","green"],c:0},
+{q:"Which sentence uses a pronoun correctly?",a:["Amaka likes she.","She likes football.","Him is happy.","Them is here."],c:1},
+{q:"Which word can replace 'the boys'?",a:["he","she","it","they"],c:3}
+],
+
+"Verbs & Adjectives":[
+{q:"Which word is a verb?",a:["jump","blue","school","happy"],c:0},
+{q:"Which word is an adjective in 'The tall girl smiled'?",a:["girl","tall","smiled","the"],c:1},
+{q:"Which sentence contains an action verb?",a:["The boy runs.","The sky is blue.","The bag is heavy.","The food is hot."],c:0},
+{q:"Which word describes a noun?",a:["adjective","verb","pronoun","number"],c:0},
+{q:"In 'The small dog barked', which word describes the dog?",a:["The","small","dog","barked"],c:1}
+],
+
+"Punctuation":[
+{q:"Which mark ends a question?",a:[".","!","?",","],c:2},
+{q:"Which sentence is correctly punctuated?",a:["Where are you.","Where are you?","Where are you!","where are you"],c:1},
+{q:"Which mark usually ends a statement?",a:["?","!",".",":"],c:2},
+{q:"Which sentence needs a question mark?",a:["I like rice","Where is my book","The dog is brown","We went home"],c:1},
+{q:"Which sentence begins correctly?",a:["the boy ran.","The boy ran.","the Boy ran.","THE boy ran."],c:1}
+],
+
+"Comprehension":[
+{q:"If a passage says 'Tunde carried an umbrella because it was raining', why did Tunde carry an umbrella?",a:["It was sunny","It was raining","He was hungry","He lost his bag"],c:1},
+{q:"If a story says Ada shared her food with her friend, what quality did Ada show?",a:["Selfishness","Kindness","Anger","Fear"],c:1},
+{q:"A passage says 'Kunle arrived early for school.' What does this tell us?",a:["He was late","He arrived before the expected time","He missed school","He went home"],c:1},
+{q:"If a story says a boy practised every day and improved, what is the lesson?",a:["Practice can help improvement","Never practise","Always give up","Practice is useless"],c:0},
+{q:"What should you do if you do not understand part of a passage?",a:["Guess everything","Read it again","Close the book","Ignore the question"],c:1}
+],
+
+"Spelling & Vocabulary":[
+{q:"Which is correctly spelt?",a:["becos","because","becouse","beccause"],c:1},
+{q:"Which word means almost the same as 'happy'?",a:["sad","angry","glad","tired"],c:2},
+{q:"Which is correctly spelt?",a:["beautiful","beautifull","butiful","beutiful"],c:0},
+{q:"What does 'enormous' mean?",a:["Very small","Very large","Very quiet","Very slow"],c:1},
+{q:"Which word is closest in meaning to 'begin'?",a:["start","finish","stop","close"],c:0}
+],
+
+"Writing":[
+{q:"Which is the best beginning for a sentence?",a:["because school","Yesterday, I visited my grandmother.","and then","running quickly"],c:1},
+{q:"Which sentence is clearer?",a:["I went market yesterday.","Yesterday, I went to the market.","Yesterday market I went.","Went market yesterday I."],c:1},
+{q:"What should a good paragraph contain?",a:["Only one random word","Connected ideas","Only numbers","No punctuation"],c:1},
+{q:"Which sentence uses the past tense?",a:["I eat rice.","I am eating rice.","I ate rice.","I will eat rice."],c:2},
+{q:"Which sentence uses the future tense?",a:["I played football.","I play football.","I am playing football.","I will play football."],c:3}
+]
+
+},
+
+"Basic Science":{
+
+"Living & Non-living Things":[
+{q:"Which is a living thing?",a:["stone","chair","goat","cup"],c:2},
+{q:"Which is a non-living thing?",a:["tree","dog","rock","bird"],c:2},
+{q:"Which is a characteristic of living things?",a:["They grow","They never change","They cannot feed","They never breathe"],c:0},
+{q:"Why is a plant living?",a:["It is made of plastic","It grows","It is a toy","It is made of glass"],c:1},
+{q:"Which group contains only living things?",a:["Dog, tree, bird","Chair, dog, tree","Stone, table, bird","Cup, spoon, cat"],c:0}
+],
+
+"Plants":[
+{q:"Which part of a plant usually absorbs water from the soil?",a:["flower","root","fruit","leaf"],c:1},
+{q:"Which part usually makes food for a plant?",a:["leaf","root","seed","flower"],c:0},
+{q:"What do plants need to grow?",a:["Only stones","Water and suitable light","Only toys","Only sand"],c:1},
+{q:"Which of these is a plant?",a:["mango tree","goat","fish","lizard"],c:0},
+{q:"Why are roots important?",a:["They help anchor the plant and take in water","They make noise","They fly","They produce shoes"],c:0}
+],
+
+"Animals & Habitats":[
+{q:"Where do fish naturally live?",a:["Water","Desert only","Sky","Road"],c:0},
+{q:"A habitat is...",a:["a type of food","the place an organism lives","a school subject","a musical instrument"],c:1},
+{q:"Which animal is well adapted to living in water?",a:["fish","goat","chicken","cat"],c:0},
+{q:"Why do animals need suitable habitats?",a:["To find what they need to survive","To become toys","To stop eating","To avoid all movement"],c:0},
+{q:"Which is an example of a habitat?",a:["pond","pencil","shoe","plate"],c:0}
+],
+
+"Human Body & Health":[
+{q:"Which organ pumps blood around the body?",a:["heart","ear","skin","tongue"],c:0},
+{q:"Which habit helps prevent the spread of germs?",a:["Washing hands","Never bathing","Sharing dirty cups","Throwing rubbish everywhere"],c:0},
+{q:"Which part helps us see?",a:["eyes","ears","nose","teeth"],c:0},
+{q:"Why do we need healthy food?",a:["For nutrients and energy","To become tired","To avoid growing","To stop moving"],c:0},
+{q:"Which habit is healthy?",a:["Getting enough rest","Never sleeping","Never drinking water","Always skipping meals"],c:0}
+],
+
+"Matter, Light & Sound":[
+{q:"Which is matter?",a:["air","a thought","a dream","a question"],c:0},
+{q:"What produces sound when a drum is struck?",a:["Vibration","Darkness","Silence","Water only"],c:0},
+{q:"Why do we need light to see clearly?",a:["Light helps objects become visible","Light makes objects disappear","Light stops all sound","Light removes colour"],c:0},
+{q:"Which is a source of light?",a:["Sun","stone","chair","shoe"],c:0},
+{q:"Which can produce sound?",a:["drum","blank paper","empty thought","shadow"],c:0}
+],
+
+"Environment & Safety":[
+{q:"Which action helps keep the environment clean?",a:["Throwing rubbish on the road","Using bins","Pouring waste into drains","Leaving plastic everywhere"],c:1},
+{q:"Which place is safer for crossing a busy road?",a:["A suitable crossing point","The middle of fast traffic","Behind a moving car","Anywhere without looking"],c:0},
+{q:"Why should rubbish be disposed of properly?",a:["To help keep the environment healthy","To make roads dirty","To block drains","To attract pests"],c:0},
+{q:"What should you do if you see something dangerous?",a:["Tell a trusted adult","Touch it immediately","Play with it","Hide it"],c:0},
+{q:"Which action is safest?",a:["Looking both ways before crossing","Running into traffic","Playing on the road","Ignoring traffic"],c:0}
+]
+
+},
+
+"Yorùbá":{
+
+"Greetings":[
+{q:"Which greeting can be used in the morning?",a:["Ẹ káàárọ̀","Odàbọ̀","O dàárọ̀","Ẹ kú alẹ́"],c:0},
+{q:"Why are greetings important?",a:["They show respect","They stop communication","They cause arguments","They replace food"],c:0},
+{q:"Which action shows respect when greeting an elder?",a:["Greeting politely","Ignoring the person","Shouting rudely","Walking away"],c:0},
+{q:"A respectful greeting should be...",a:["Polite","Rude","Angry","Careless"],c:0},
+{q:"What can greetings help us build?",a:["Good relationships","Traffic jams","Noise","Broken things"],c:0}
+],
+
+"Family":[
+{q:"What does 'Ìyá' mean?",a:["Mother","Brother","Friend","Teacher"],c:0},
+{q:"What does 'bàbá' mean?",a:["Father","Sister","Child","Neighbour"],c:0},
+{q:"Family members should generally...",a:["Care for and respect one another","Always fight","Ignore each other","Never communicate"],c:0},
+{q:"Which person is a family member?",a:["Mother","Chair","Book","Road"],c:0},
+{q:"Why is learning family words useful?",a:["It helps us communicate","It prevents speaking","It stops learning","It makes numbers disappear"],c:0}
+],
+
+"Numbers":[
+{q:"What does 'ọ̀kan' mean?",a:["One","Two","Three","Four"],c:0},
+{q:"Why do we learn numbers?",a:["To count and communicate quantities","To stop counting","To avoid mathematics","To forget things"],c:0},
+{q:"Which activity uses numbers?",a:["Counting books","Sleeping only","Painting only","Singing only"],c:0},
+{q:"If you know numbers in Yorùbá, you can...",a:["Communicate quantities","Stop reading","Avoid counting","Never speak"],c:0},
+{q:"Practising numbers is best done by...",a:["Saying and using them regularly","Never repeating them","Ignoring them","Only looking at them once"],c:0}
+],
+
+"Everyday Words":[
+{q:"Why are everyday words useful?",a:["They help us communicate","They stop conversation","They remove meaning","They prevent learning"],c:0},
+{q:"A good way to learn a new word is to...",a:["Use it in context","Forget it immediately","Never say it","Avoid examples"],c:0},
+{q:"Everyday vocabulary includes words for...",a:["Common people, objects and activities","Only planets","Only numbers","Only colours"],c:0},
+{q:"If you see a new object, learning its name helps you...",a:["Talk about it","Hide it","Destroy it","Forget it"],c:0},
+{q:"Practice helps vocabulary become...",a:["Easier to remember","Impossible to remember","Less useful","Unclear"],c:0}
+],
+
+"Simple Sentences":[
+{q:"What does a sentence communicate?",a:["A complete idea","Only a letter","Nothing","Only a number"],c:0},
+{q:"What makes a sentence useful?",a:["Clear meaning","Random words","No meaning","Only punctuation"],c:0},
+{q:"When practising a sentence, you should...",a:["Say it clearly","Rush through it","Ignore the meaning","Remove all words"],c:0},
+{q:"Simple sentences are useful for...",a:["Communication","Confusion only","Silence","Counting money only"],c:0},
+{q:"A sentence should communicate...",a:["An idea or message","Nothing","Only noise","Only symbols"],c:0}
+],
+
+"Culture & Proverbs":[
+{q:"What can proverbs teach?",a:["Wisdom and lessons","Only games","Nothing","Only mathematics"],c:0},
+{q:"Which is part of culture?",a:["Traditions","Only roads","Only buildings","Only numbers"],c:0},
+{q:"Why should we learn about culture?",a:["To understand and respect heritage","To forget traditions","To avoid people","To stop learning"],c:0},
+{q:"Stories can help pass culture from...",a:["One generation to another","A phone to a shoe","A road to a tree","A book to a chair"],c:0},
+{q:"When you do not understand a proverb, you can...",a:["Ask a knowledgeable adult","Ignore all explanations","Make up anything","Stop learning"],c:0}
+]
+
+},
+
+"Nigerian History":{
+
+"Local History":[
+{q:"What does local history help us understand?",a:["Our community's past","Only mathematics","Only weather","Only sports"],c:0},
+{q:"Who may have useful stories about the past?",a:["Older family members","Only toys","Only cars","Nobody"],c:0},
+{q:"Why is local history important?",a:["It helps us understand where communities came from","It stops learning","It removes culture","It prevents questions"],c:0},
+{q:"What can historical stories teach us?",a:["Lessons from the past","Only songs","Only recipes","Nothing"],c:0},
+{q:"A community's history can include...",a:["People and important events","Only shoes","Only food","Only numbers"],c:0}
+],
+
+"Ibadan & Oyo Heritage":[
+{q:"Ibadan is an important city in which part of Nigeria?",a:["Southwestern Nigeria","Northern Nigeria only","Southeastern Nigeria only","Outside Nigeria"],c:0},
+{q:"Oyo is associated with which broad cultural area?",a:["Yorùbá heritage","Japanese heritage","Brazilian heritage","Australian heritage"],c:0},
+{q:"Why should children learn local heritage?",a:["To understand their roots","To forget their community","To avoid history","To stop asking questions"],c:0},
+{q:"Heritage can include...",a:["Traditions and culture","Only computers","Only roads","Only numbers"],c:0},
+{q:"Learning Ibadan history can help pupils...",a:["Appreciate their city","Forget their city","Avoid school","Stop reading"],c:0}
+],
+
+"National Symbols":[
+{q:"What are the colours of Nigeria's national flag?",a:["Green, white and green","Red, blue and yellow","Black and white","Purple and orange"],c:0},
+{q:"National symbols help represent...",a:["A country","Only one classroom","A single toy","A football"],c:0},
+{q:"How should national symbols be treated?",a:["With respect","Carelessly","As toys","By destroying them"],c:0},
+{q:"Which is associated with Nigeria?",a:["The Nigerian flag","A random foreign flag","A school notebook","A shoe"],c:0},
+{q:"Why are national symbols important?",a:["They help build national identity","They stop communication","They remove history","They prevent unity"],c:0}
+],
+
+"Important Nigerians":[
+{q:"Why do we study important Nigerians?",a:["To learn about their contributions","To forget their work","To avoid history","To stop learning"],c:0},
+{q:"A person can contribute to Nigeria through...",a:["Education, science, arts or service","Only sleeping","Only playing","Doing nothing"],c:0},
+{q:"What should you focus on when studying a historical person?",a:["Their contribution and impact","Only their clothes","Only their favourite food","Only their height"],c:0},
+{q:"People can influence society by...",a:["Their ideas and actions","Doing nothing","Avoiding everyone","Breaking everything"],c:0},
+{q:"Learning from role models can help pupils...",a:["Understand positive contributions","Avoid learning","Forget history","Stop helping others"],c:0}
+],
+
+"Culture & Heritage":[
+{q:"Which can be part of cultural heritage?",a:["Music","Only traffic","Only mathematics","Only buildings"],c:0},
+{q:"Why should cultural traditions be respected?",a:["They are important parts of people's heritage","They are useless","They prevent learning","They should always be destroyed"],c:0},
+{q:"Which can carry cultural traditions?",a:["Stories","Only calculators","Only chairs","Only roads"],c:0},
+{q:"Traditional festivals can be examples of...",a:["Cultural heritage","Weather","Mathematics","Traffic"],c:0},
+{q:"Learning about other cultures should encourage...",a:["Respect and understanding","Mockery","Anger","Fear"],c:0}
+],
+
+"Why History Matters":[
+{q:"History helps us understand...",a:["The past","Only tomorrow","Only mathematics","Nothing"],c:0},
+{q:"Why do we study past events?",a:["To learn useful lessons","To forget everything","To stop asking questions","To avoid responsibility"],c:0},
+{q:"What can history help us make?",a:["Better decisions","More confusion only","No decisions","Random guesses"],c:0},
+{q:"Historical lessons can be used in...",a:["The present and future","Only the past","Only dreams","Nowhere"],c:0},
+{q:"A good history learner should...",a:["Ask questions and think about evidence","Believe every rumour","Never ask questions","Ignore information"],c:0}
+]
+
+},
+
+"Social & Citizenship Studies":{
+
+"Family & Community":[
+{q:"What is one purpose of a family?",a:["Care and support","Creating confusion","Avoiding communication","Stopping learning"],c:0},
+{q:"How can neighbours help one another?",a:["By cooperating","By fighting","By destroying property","By ignoring everyone"],c:0},
+{q:"A community is made up of...",a:["People living and working together","Only animals","Only buildings","Only roads"],c:0},
+{q:"A positive community action is...",a:["Helping keep shared spaces clean","Throwing rubbish everywhere","Damaging property","Making unsafe roads"],c:0},
+{q:"Families can teach children...",a:["Values and responsibilities","Only games","Nothing","Only numbers"],c:0}
+],
+
+"Rules & Responsibilities":[
+{q:"Why do schools have rules?",a:["To keep people safe and organised","To create confusion","To stop learning","To make people angry"],c:0},
+{q:"A responsibility is...",a:["A duty you are expected to carry out","A toy","A game","A snack"],c:0},
+{q:"Which is a school responsibility?",a:["Completing assigned work","Destroying books","Ignoring teachers","Making noise during lessons"],c:0},
+{q:"Following sensible rules can help create...",a:["Order and safety","Chaos","Danger","Confusion"],c:0},
+{q:"A responsible pupil should...",a:["Take care of school property","Damage it","Hide it","Waste it"],c:0}
+],
+
+"Good Citizenship":[
+{q:"A good citizen should...",a:["Respect others","Destroy public property","Ignore rules","Harm people"],c:0},
+{q:"Protecting public property is...",a:["Responsible","Careless","Dangerous","Unhelpful"],c:0},
+{q:"Good citizenship includes...",a:["Helping your community","Creating problems","Damaging roads","Littering"],c:0},
+{q:"Citizens should treat others with...",a:["Respect","Cruelty","Dishonesty","Carelessness"],c:0},
+{q:"Which is a positive civic action?",a:["Helping to keep the environment clean","Breaking public property","Littering","Ignoring safety"],c:0}
+],
+
+"Cooperation":[
+{q:"Cooperation means...",a:["Working together","Always working alone","Arguing constantly","Ignoring people"],c:0},
+{q:"Why is teamwork useful?",a:["People can combine ideas and skills","It stops progress","It creates silence","It prevents communication"],c:0},
+{q:"A good team member should...",a:["Listen to others","Ignore everyone","Shout all the time","Refuse every idea"],c:0},
+{q:"Which activity requires cooperation?",a:["Group project","Sleeping","Reading alone only","Walking alone"],c:0},
+{q:"Cooperation can help a group...",a:["Reach a shared goal","Avoid every task","Stop working","Create confusion"],c:0}
+],
+
+"Safety in the Community":[
+{q:"What should you do before crossing a busy road?",a:["Look carefully and cross at a safe place","Run without looking","Close your eyes","Play on the road"],c:0},
+{q:"If you see something dangerous, you should...",a:["Tell a trusted adult","Touch it","Play with it","Hide it"],c:0},
+{q:"Which place is unsafe for playing?",a:["A busy road","A suitable playground","A safe sports field","A supervised play area"],c:0},
+{q:"Why should we follow safety rules?",a:["To reduce danger","To create danger","To stop learning","To make roads busy"],c:0},
+{q:"If you are unsure about a dangerous situation, seek help from...",a:["A trusted adult","A stranger in traffic","Nobody","A toy"],c:0}
+],
+
+"Our Environment":[
+{q:"Which action helps protect the environment?",a:["Using bins","Littering","Blocking drains","Burning rubbish carelessly"],c:0},
+{q:"Why should drains be kept clear?",a:["To help water flow properly","To create flooding","To store rubbish","To block roads"],c:0},
+{q:"Trees can help the environment by...",a:["Providing useful natural benefits","Creating rubbish","Blocking every road","Making water dirty"],c:0},
+{q:"Which is responsible behaviour?",a:["Reducing litter","Throwing plastics anywhere","Destroying plants","Polluting water"],c:0},
+{q:"A clean environment can support...",a:["Health and wellbeing","More pollution","More litter","Unsafe living"],c:0}
+]
+
+},
+
+"Cultural & Creative Arts":{
+
+"Lines & Shapes":[
+{q:"Which is a shape?",a:["Circle","Running","Singing","Laughing"],c:0},
+{q:"Artists can use shapes to...",a:["Create designs and pictures","Make food","Measure time only","Write numbers only"],c:0},
+{q:"Which shape has three sides?",a:["Triangle","Circle","Square","Oval"],c:0},
+{q:"Which shape has four equal sides?",a:["Square","Triangle","Circle","Oval"],c:0},
+{q:"Patterns can be made using...",a:["Lines and shapes","Only numbers","Only sounds","Only food"],c:0}
+],
+
+"Colour & Painting":[
+{q:"What can artists use to create paintings?",a:["Colours","Only numbers","Only sounds","Only words"],c:0},
+{q:"Mixing colours can create...",a:["New colours and shades","Only noise","Nothing","Food"],c:0},
+{q:"Which activity is creative art?",a:["Painting","Sleeping","Running only","Counting only"],c:0},
+{q:"Artists use colour to...",a:["Communicate ideas and create visual effects","Make traffic","Tell time only","Measure weight"],c:0},
+{q:"When using art materials, you should...",a:["Use them carefully","Waste them","Throw them everywhere","Destroy them"],c:0}
+],
+
+"Rhythm & Beat":[
+{q:"Rhythm is...",a:["A pattern of sounds or beats","A type of food","A road","A plant"],c:0},
+{q:"What can help you keep a beat?",a:["Clapping steadily","Closing your ears","Running away","Ignoring the music"],c:0},
+{q:"Music can include...",a:["Rhythm and melody","Only silence","Only writing","Only numbers"],c:0},
+{q:"A repeated beat can create...",a:["Rhythm","A building","A meal","A road"],c:0},
+{q:"When copying a rhythm, you should...",a:["Listen carefully","Ignore the sound","Rush randomly","Stop listening"],c:0}
+],
+
+"Singing & Instruments":[
+{q:"What can be used to make music?",a:["Voice and instruments","Only chairs","Only books","Only roads"],c:0},
+{q:"How can a drum produce sound?",a:["By being struck and vibrating","By being hidden","By being painted only","By being frozen"],c:0},
+{q:"Singing uses...",a:["The human voice","Only hands","Only feet","Only paper"],c:0},
+{q:"Why should instruments be cared for?",a:["To keep them useful and safe","To destroy them","To make them dirty","To lose them"],c:0},
+{q:"Which is a musical instrument?",a:["Drum","Plate","Shoe","Book"],c:0}
+],
+
+"Drama & Storytelling":[
+{q:"Drama involves...",a:["Acting out characters or situations","Only mathematics","Only running","Only drawing numbers"],c:0},
+{q:"A character in a story is...",a:["A person or figure in the story","A road","A colour only","A number"],c:0},
+{q:"What can facial expressions help actors communicate?",a:["Emotions","Weight","Time only","Distance"],c:0},
+{q:"Storytelling can be used to...",a:["Share ideas and lessons","Stop communication","Remove culture","Prevent learning"],c:0},
+{q:"Good acting can involve...",a:["Voice and expression","Only silence","Only numbers","Only sitting"],c:0}
+],
+
+"Nigerian Arts & Culture":[
+{q:"Which can be part of Nigerian culture?",a:["Music","Only mathematics","Only traffic","Only weather"],c:0},
+{q:"Traditional art can include...",a:["Crafts and designs","Only computers","Only roads","Only calculators"],c:0},
+{q:"Why should cultural art be respected?",a:["It is part of people's heritage","It has no value","It should always be destroyed","It stops learning"],c:0},
+{q:"Dance can be a form of...",a:["Cultural expression","Mathematics","Road safety","Science only"],c:0},
+{q:"Learning Nigerian arts can help pupils...",a:["Appreciate culture","Forget culture","Avoid creativity","Stop learning"],c:0}
+]
+
+},
+
+"Physical & Health Education":{
+
+"Fitness & Movement":[
+{q:"Which is physical activity?",a:["Running","Sleeping","Watching TV","Sitting still"],c:0},
+{q:"Why is physical activity useful?",a:["It helps keep the body active and healthy","It prevents movement","It always causes illness","It stops learning"],c:0},
+{q:"Which is a movement activity?",a:["Jumping","Reading only","Sleeping","Listening only"],c:0},
+{q:"Why should you move safely?",a:["To reduce the chance of injury","To create danger","To stop exercise","To make others unsafe"],c:0},
+{q:"A warm-up can help prepare the body for...",a:["Physical activity","Sleeping only","Reading only","Eating only"],c:0}
+],
+
+"Games & Teamwork":[
+{q:"Which sport commonly requires teamwork?",a:["Football","Sleeping","Reading alone","Drawing alone"],c:0},
+{q:"A good teammate should...",a:["Respect others","Cheat","Insult others","Ignore the team"],c:0},
+{q:"Why do teams communicate?",a:["To coordinate their actions","To confuse themselves","To stop playing","To avoid teamwork"],c:0},
+{q:"Good sportsmanship means...",a:["Playing fairly and respectfully","Always cheating","Insulting opponents","Breaking rules"],c:0},
+{q:"Teamwork means...",a:["Working together toward a goal","Working against everyone","Refusing help","Ignoring teammates"],c:0}
+],
+
+"Personal Hygiene":[
+{q:"Which helps maintain good hygiene?",a:["Washing hands","Never bathing","Sharing dirty items","Avoiding clean water"],c:0},
+{q:"When should hands be washed?",a:["Before eating and after using the toilet","Never","Only once a month","Only during holidays"],c:0},
+{q:"Why is bathing important?",a:["It helps keep the body clean","It makes the body dirty","It stops growth","It prevents movement"],c:0},
+{q:"Which is a hygiene item?",a:["Soap","Stone","Toy car","Football"],c:0},
+{q:"Good hygiene can help reduce...",a:["The spread of germs","Learning","Communication","Healthy habits"],c:0}
+],
+
+"Food & Nutrition":[
+{q:"Why do we need food?",a:["For nutrients and energy","To stop growing","To avoid activity","To become unhealthy"],c:0},
+{q:"A balanced meal should contain...",a:["A variety of suitable foods","Only sweets","Only one food forever","Only water"],c:0},
+{q:"Which is generally a healthy habit?",a:["Eating a variety of nutritious foods","Skipping every meal","Eating only sweets","Never drinking water"],c:0},
+{q:"Food provides the body with...",a:["Energy and nutrients","Only noise","Only light","Only music"],c:0},
+{q:"Healthy eating supports...",a:["Growth and wellbeing","Illness only","Weakness only","No development"],c:0}
+],
+
+"Rest & Healthy Habits":[
+{q:"Why does the body need rest?",a:["To recover and function well","To stop growing","To avoid all activity","To become tired"],c:0},
+{q:"Which is a healthy habit?",a:["Getting enough sleep","Never sleeping","Skipping meals","Never drinking water"],c:0},
+{q:"A regular bedtime can help children...",a:["Get enough rest","Avoid sleep","Become weaker","Stop learning"],c:0},
+{q:"Healthy routines can include...",a:["Rest, activity and good hygiene","Only games","Only food","Only sleep"],c:0},
+{q:"Why should schoolwork and play be balanced?",a:["To support healthy development","To avoid all learning","To avoid movement","To create stress"],c:0}
+],
+
+"Safety Awareness":[
+{q:"What should you do when something seems dangerous?",a:["Seek help from a trusted adult","Touch it","Play with it","Hide it"],c:0},
+{q:"Which is unsafe?",a:["Playing on a busy road","Playing in a safe playground","Following safety rules","Listening to adults"],c:0},
+{q:"Safety awareness means...",a:["Recognising danger and making safer choices","Ignoring danger","Taking unnecessary risks","Never asking for help"],c:0},
+{q:"Who can help when a child is in danger?",a:["A trusted adult","Nobody","A toy","A road"],c:0},
+{q:"Why are safety rules important?",a:["They help reduce danger","They create danger","They stop learning","They prevent communication"],c:0}
+]
+
+},
+
+"Religion & National Values":{
+
+"Honesty":[
+{q:"What does honesty mean?",a:["Telling the truth","Lying","Hiding everything","Cheating"],c:0},
+{q:"If you accidentally break something, what is the honest thing to do?",a:["Tell the truth","Blame someone else","Hide it","Run away"],c:0},
+{q:"Honesty helps build...",a:["Trust","Fear","Confusion","Anger"],c:0},
+{q:"A truthful person should...",a:["Be honest about what happened","Always lie","Cheat","Hide facts"],c:0},
+{q:"Which action shows honesty?",a:["Returning something that belongs to someone else","Keeping it secretly","Lying about it","Destroying it"],c:0}
+],
+
+"Respect":[
+{q:"Which action shows respect?",a:["Listening when someone speaks","Interrupting constantly","Insulting people","Damaging property"],c:0},
+{q:"Respect means treating people with...",a:["Care and good manners","Cruelty","Dishonesty","Anger"],c:0},
+{q:"How can you respect school property?",a:["Take care of it","Destroy it","Write on everything","Break it"],c:0},
+{q:"Respect can be shown through...",a:["Words and actions","Only silence","Only money","Only games"],c:0},
+{q:"A respectful pupil should...",a:["Listen and behave politely","Always shout","Mock others","Ignore everyone"],c:0}
+],
+
+"Responsibility":[
+{q:"Responsibility means...",a:["Doing your duties","Avoiding all duties","Blaming others","Ignoring tasks"],c:0},
+{q:"Which is a responsibility for a pupil?",a:["Completing schoolwork","Destroying books","Ignoring lessons","Breaking rules"],c:0},
+{q:"A responsible person...",a:["Can be trusted to do their duties","Always avoids work","Never helps anyone","Always blames others"],c:0},
+{q:"Why is responsibility important?",a:["It helps people depend on us","It creates confusion","It stops learning","It causes danger"],c:0},
+{q:"Which shows responsibility at home?",a:["Helping with appropriate chores","Destroying property","Ignoring everyone","Wasting food"],c:0}
+],
+
+"Peace & Cooperation":[
+{q:"Peace means...",a:["Living without unnecessary conflict","Always fighting","Ignoring everyone","Creating arguments"],c:0},
+{q:"What can help solve disagreements?",a:["Calm discussion","Shouting","Insults","Fighting"],c:0},
+{q:"Cooperation means...",a:["Working together","Working against others","Avoiding teamwork","Creating arguments"],c:0},
+{q:"A peaceful person should...",a:["Try to solve problems calmly","Always fight","Insult people","Create conflict"],c:0},
+{q:"Why is cooperation valuable?",a:["It helps people reach shared goals","It prevents progress","It stops communication","It causes confusion"],c:0}
+],
+
+"Community & Citizenship":[
+{q:"A good community member should...",a:["Help others and care for shared spaces","Destroy property","Litter everywhere","Ignore everyone"],c:0},
+{q:"Citizens have responsibilities toward...",a:["Their communities","Only themselves","Nobody","Only toys"],c:0},
+{q:"Which is a positive community action?",a:["Keeping shared spaces clean","Damaging public property","Blocking drains","Littering"],c:0},
+{q:"Why should people cooperate in communities?",a:["To solve shared problems","To create more problems","To avoid everyone","To stop communication"],c:0},
+{q:"Good citizenship includes...",a:["Respect and responsibility","Dishonesty","Carelessness","Destruction"],c:0}
+],
+
+"Kindness & Character":[
+{q:"Kindness means...",a:["Treating others with care","Hurting people","Ignoring everyone","Being dishonest"],c:0},
+{q:"Good character is shown mainly by...",a:["Our actions","Our clothes","Our shoes","Our height"],c:0},
+{q:"Which is an act of kindness?",a:["Helping someone who needs support","Mocking someone","Ignoring someone in need","Damaging property"],c:0},
+{q:"Kindness can make relationships...",a:["Stronger","Worse always","Impossible","Unclear"],c:0},
+{q:"Why is good character important?",a:["It helps us make positive choices","It stops learning","It causes conflict","It prevents responsibility"],c:0}
+]
+
+}
+
+};
+
+
+/* =========================
+   DICTIONARY
+========================= */
+
+const words=[
+
+["curious","adjective","Wanting to learn or know more about something.","The curious pupil asked a good question.","interested, eager"],
+
+["responsible","adjective","Able to be trusted to do what you should do.","She is responsible with her schoolwork.","reliable, dependable"],
+
+["community","noun","A group of people who live or work together.","Our community worked together to clean the area.","society, neighbourhood"],
+
+["heritage","noun","Traditions, culture and history passed from one generation to another.","We should respect our cultural heritage.","tradition, legacy"],
+
+["cooperate","verb","To work together with other people.","The pupils cooperate during group work.","collaborate, work together"],
+
+["environment","noun","The surroundings where people, animals and plants live.","We should protect our environment.","surroundings, habitat"],
+
+["honest","adjective","Telling the truth and acting truthfully.","An honest pupil tells the truth.","truthful, sincere"],
+
+["respect","noun","Treating someone or something with care and good manners.","We should show respect to others.","admiration, regard"],
+
+["measure","verb","To find the size, amount or length of something.","We measure the table with a ruler.","calculate, assess"],
+
+["fraction","noun","A part of a whole.","One half is a fraction.","part, portion"],
+
+["habitat","noun","The natural home of a plant or animal.","A pond can be a habitat for fish.","home, environment"],
+
+["nutrition","noun","The process of getting useful nutrients from food.","Good nutrition supports healthy growth.","nourishment, feeding"],
+
+["creative","adjective","Able to produce new ideas or things.","The creative pupil designed a colourful picture.","inventive, imaginative"],
+
+["rhythm","noun","A pattern of beats or sounds.","We clapped to the rhythm.","beat, pattern"],
+
+["citizen","noun","A person who belongs to a country or community.","A good citizen helps the community.","member, resident"],
+
+["responsibility","noun","A duty that you are expected to carry out.","Cleaning up after yourself is a responsibility.","duty, obligation"],
+
+["kindness","noun","The quality of being caring and helpful.","Her kindness made her friend feel better.","care, generosity"],
+
+["punctuation","noun","Marks used in writing to help show meaning.","Punctuation helps readers understand sentences.","marks, symbols"],
+
+["vocabulary","noun","The words a person knows and uses.","Reading can improve your vocabulary.","words, language"],
+
+["heritage","noun","Important traditions and culture passed down through generations.","Our heritage is worth protecting.","tradition, culture"],
+
+["energy","noun","The ability to do work or activity.","Food gives the body energy.","power, strength"],
+
+["organism","noun","A living thing.","A plant is a living organism.","living thing"],
+
+["vibration","noun","A quick back-and-forth movement.","A drum makes sound through vibration.","movement, shaking"]
+
+];
+
+
+/* =========================
+   APP STATE
+========================= */
+
+const DAYS=[
+"Monday",
+"Tuesday",
+"Wednesday",
+"Thursday",
+"Friday",
+"Saturday",
+"Sunday"
+];
+
+const STORAGE_KEY="eeduverse_state";
+
+let state=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null")||{
+  xp:0,
+  stars:0,
+  completed:{},
+  schedule:[],
+  saved:[],
+  streak:0
+};
+
+
+/* =========================
+   BASIC HELPERS
+========================= */
+
+function save(){
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  renderStats();
+}
+
+function keys(){
+  return Object.keys(curriculum);
+}
+
+function todayName(){
+  return DAYS[new Date().getDay()===0?6:new Date().getDay()-1];
+}
+
+function timeText(t){
+  if(!t)return "";
+  let [h,m]=t.split(":").map(Number);
+  let ap=h>=12?"PM":"AM";
+  h=h%12||12;
+  return `${h}:${String(m).padStart(2,"0")} ${ap}`;
+}
+
+function toast(message){
+  const t=document.getElementById("toast");
+  t.textContent=message;
+  t.style.display="block";
+
+  setTimeout(()=>{
+    t.style.display="none";
+  },2200);
+}
+
+function show(id){
+
+  document.querySelectorAll(".view").forEach(v=>{
+    v.classList.remove("active");
+  });
+
+  const el=document.getElementById(id);
+
+  if(el){
+    el.classList.add("active");
+  }
+
+  document.querySelectorAll("nav button").forEach(b=>{
+    b.classList.toggle(
+      "active",
+      b.dataset.view===id
+    );
+  });
+
+  if(id==="home")renderHome();
+  if(id==="progress")renderProgress();
+  if(id==="parent")renderParent();
+  if(id==="dictionary")renderDict();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+document.querySelectorAll("nav button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    show(btn.dataset.view);
+  });
+});
+
+
+/* =========================
+   SUBJECT CARDS
+========================= */
+
+function subjectCard(k){
+
+  const s=curriculum[k];
+
+  const done=s.lessons.filter(
+    (_,i)=>state.completed[k+"-"+i]
+  ).length;
+
+  const percent=Math.round(
+    done/s.lessons.length*100
+  );
+
+  return `
+  <div class="card subject">
+
+    <div class="emoji">${s.emoji}</div>
+
+    <h3>${s.name}</h3>
+
+    <p class="muted">${s.desc}</p>
+
+    <div class="bar">
+      <i style="width:${percent}%"></i>
+    </div>
+
+    <p>
+      <b>${done}/${s.lessons.length}</b>
+      lessons complete
+    </p>
+
+    <div class="actions">
+
+      <button
+        class="primary"
+        onclick="openLesson('${k}',${nextIndex(k)})"
+      >
+        Learn 🎓
+      </button>
+
+    </div>
+
+  </div>
+  `;
+}
+
+function nextIndex(k){
+
+  const s=curriculum[k];
+
+  const i=s.lessons.findIndex(
+    (_,index)=>!state.completed[k+"-"+index]
+  );
+
+  return i<0?0:i;
+}
+
+function renderSubjects(){
+
+  document.getElementById("subjectsGrid").innerHTML=
+    keys().map(subjectCard).join("");
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function renderHome(){
+
+  const now=new Date();
+
+  document.getElementById("dateLabel").textContent=
+    now.toLocaleDateString(
+      "en-NG",
+      {
+        weekday:"long",
+        day:"numeric",
+        month:"long"
+      }
+    );
+
+  document.getElementById("homeSubjects").innerHTML=
+    keys().map(subjectCard).join("");
+
+  const today=todayName();
+
+  const sessions=state.schedule
+    .filter(x=>x.day===today)
+    .sort((a,b)=>a.time.localeCompare(b.time));
+
+  if(!sessions.length){
+
+    document.getElementById("today").innerHTML=`
+      <div class="empty">
+        <h3>No lessons scheduled for today 🌈</h3>
+        <p>
+          A parent can add a learning session from Parent Corner.
+        </p>
+        <button
+          class="primary"
+          onclick="show('parent')"
+        >
+          Set today's plan
+        </button>
+      </div>
+    `;
+
+  }else{
+
+    document.getElementById("today").innerHTML=
+      sessions.map(x=>{
+
+        const s=curriculum[x.sub];
+
+        return `
+        <div class="schedule">
+
+          <div>
+
+            <div class="time">
+              ${timeText(x.time)}
+            </div>
+
+            <b>
+              ${s.emoji} ${s.name}
+            </b>
+
+            <br>
+
+            <span class="tag">
+              ${x.topic==="auto"?"Next topic":x.topic}
+              • ${x.duration} min
+            </span>
+
+          </div>
+
+          <button
+            class="primary"
+            onclick="scheduled('${x.id}')"
+          >
+            Start 🚀
+          </button>
+
+        </div>
+        `;
+
+      }).join("");
+
+  }
+
+  const w=words[
+    new Date().getDate()%words.length
+  ];
+
+  document.getElementById("wordDay").innerHTML=`
+    <div class="card">
+
+      <span class="tag">WORD OF THE DAY</span>
+
+      <h2 class="word">${w[0]}</h2>
+
+      <b>${w[1]}</b>
+
+      <p>${w[2]}</p>
+
+      <p>
+        <b>Example:</b> ${w[3]}
+      </p>
+
+      <button
+        class="secondary"
+        onclick="showWord('${w[0]}')"
+      >
+        Explore word 📖
+      </button>
+
+    </div>
+  `;
+}
+
+
+/* =========================
+   LESSONS
+========================= */
+
+let lesson=null;
+
+function openLesson(k,i){
+
+  lesson={
+    k:k,
+    i:i,
+    q:0,
+    score:0
+  };
+
+  show("lesson");
+
+  intro();
+}
+
+function intro(){
+
+  const z=lesson;
+  const s=curriculum[z.k];
+  const l=s.lessons[z.i];
+
+  document.getElementById("lessonArea").innerHTML=`
+
+    <div class="teacherbox">
+
+      <div class="face">👩🏽‍🏫</div>
+
+      <div>
+
+        <h3>
+          Teacher Ayo 👋🏽
+        </h3>
+
+        <p>
+          Let's learn
+          <b>${l.title}</b>
+          together.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="lesson">
+
+      <span class="tag">
+        ${s.emoji} ${s.name}
+      </span>
+
+      <h1>${l.title}</h1>
+
+      <p>${l.teach}</p>
+
+      <div class="example">
+        <b>Example:</b>
+        ${l.example}
+      </div>
+
+      <div class="tip">
+        <b>Teacher tip 💡</b>
+        ${l.tip}
+      </div>
+
+      <br>
+
+      <div class="actions">
+
+        <button
+          class="primary"
+          onclick="question()"
+        >
+          I'm ready! 🎯
+        </button>
+
+        <button
+          class="secondary"
+          onclick="speak(${JSON.stringify(l.teach)})"
+        >
+          🔊 Hear it
+        </button>
+
+      </div>
+
+    </div>
+  `;
+}
+
+function question(){
+
+  const z=lesson;
+
+  const s=curriculum[z.k];
+
+  const l=s.lessons[z.i];
+
+  const arr=Q[s.name][l.title];
+
+  const d=arr[z.q];
+
+  if(!d){
+    finish();
+    return;
+  }
+
+  document.getElementById("lessonArea").innerHTML=`
+
+    <div class="teacherbox">
+
+      <div class="face">
+        👩🏽‍🏫
+      </div>
+
+      <div>
+
+        <h3>
+          Think carefully! 🧠
+        </h3>
+
+        <p>
+          Question ${z.q+1} of ${arr.length}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="lesson">
+
+      <span class="tag">
+        ${s.name} • ${l.title}
+      </span>
+
+      <h1>
+        ${d.q}
+      </h1>
+
+      ${
+        d.a.map((a,i)=>`
+
+          <button
+            class="option"
+            data-i="${i}"
+          >
+            ${String.fromCharCode(65+i)}. ${a}
+          </button>
+
+        `).join("")
+      }
+
+      <div id="fb"></div>
+
+    </div>
+  `;
+
+  document
+    .querySelectorAll(".option")
+    .forEach(button=>{
+
+      button.onclick=()=>{
+        answer(
+          Number(button.dataset.i)
+        );
+      };
+
+    });
+}
+
+function answer(i){
+
+  const z=lesson;
+
+  const s=curriculum[z.k];
+
+  const l=s.lessons[z.i];
+
+  const arr=Q[s.name][l.title];
+
+  const d=arr[z.q];
+
+  const correct=i===d.c;
+
+  if(correct){
+    z.score++;
+  }
+
+  document
+    .querySelectorAll(".option")
+    .forEach((button,index)=>{
+
+      button.disabled=true;
+
+      if(index===d.c){
+        button.classList.add("correct");
+      }
+
+      if(index===i&&!correct){
+        button.classList.add("wrong");
+      }
+
+    });
+
+  const fb=document.getElementById("fb");
+
+  fb.className=
+    "feedback "+(correct?"ok":"no");
+
+  fb.innerHTML=`
+
+    ${correct
+      ?"🌟 Correct! Great thinking!"
+      :"💡 Keep going! You can get the next one."
+    }
+
+    <br><br>
+
+    <b>
+      ${d.a[d.c]}
+    </b>
+    is the correct answer.
+
+    <br><br>
+
+    <button
+      class="secondary"
+      id="nxt"
+    >
+      Next →
+    </button>
+  `;
+
+  document
+    .getElementById("nxt")
+    .onclick=()=>{
+
+      z.q++;
+
+      question();
+
+    };
+}
+
+function finish(){
+
+  const z=lesson;
+
+  const s=curriculum[z.k];
+
+  const l=s.lessons[z.i];
+
+  const arr=Q[s.name][l.title];
+
+  const total=arr.length;
+
+  const percent=
+    Math.round(
+      z.score/total*100
+    );
+
+  const id=
+    z.k+"-"+z.i;
+
+  const first=
+    !state.completed[id];
+
+  if(first){
+
+    state.completed[id]=true;
+
+    state.xp+=
+      40+(z.score*10);
+
+    state.stars+=
+      percent===100
+        ?3
+        :percent>=70
+          ?2
+          :1;
+
+    save();
+
+    toast("Lesson completed! 🌟");
+
+  }
+
+  document.getElementById("lessonArea").innerHTML=`
+
+    <div
+      class="lesson"
+      style="text-align:center"
+    >
+
+      <div style="font-size:70px">
+        ${
+          percent===100
+          ?"🏆"
+          :percent>=70
+            ?"🌟"
+            :"💪🏽"
+        }
+      </div>
+
+      <h1>
+        Lesson complete!
+      </h1>
+
+      <p>
+        You scored
+        <b>
+          ${z.score}/${total}
+        </b>
+        (${percent}%).
+      </p>
+
+      <p>
+        ${
+          first
+          ?"Great work! Your progress was saved."
+          :"You already completed this lesson."
+        }
+      </p>
+
+      <div
+        class="actions"
+        style="justify-content:center"
+      >
+
+        <button
+          class="primary"
+          onclick="nextLesson('${z.k}',${z.i})"
+        >
+          Next lesson →
+        </button>
+
+        <button
+          class="secondary"
+          onclick="show('home')"
+        >
+          Home
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  renderStats();
+}
+
+function nextLesson(k,i){
+
+  if(
+    i+1<
+    curriculum[k].lessons.length
+  ){
+
+    openLesson(k,i+1);
+
+  }else{
+
+    show("subjects");
+
+  }
+}
+
+
+/* =========================
+   SCHEDULE
+========================= */
+
+function scheduled(id){
+
+  const x=
+    state.schedule.find(
+      y=>String(y.id)===String(id)
+    );
+
+  if(!x)return;
+
+  let i;
+
+  if(x.topic==="auto"){
+
+    i=nextIndex(x.sub);
+
+  }else{
+
+    i=
+      curriculum[x.sub].lessons.findIndex(
+        l=>l.title===x.topic
+      );
+
+  }
+
+  if(i<0)i=0;
+
+  openLesson(x.sub,i);
+}
+
+
+/* =========================
+   DICTIONARY
+========================= */
+
+function renderDict(){
+
+  const term=
+    (
+      document.getElementById("wordInput").value||
+      ""
+    ).toLowerCase();
+
+  const results=
+    words.filter(
+      w=>!term||w[0].includes(term)
+    );
+
+  document.getElementById("wordGrid").innerHTML=
+
+    results.map(w=>`
+
+      <button
+        class="wordbtn"
+        onclick="showWord('${w[0]}')"
+      >
+        ${w[0]}
+      </button>
+
+    `).join("")
+    ||
+    `
+      <div class="empty">
+        No word found.
+      </div>
+    `;
+}
+
+function showWord(word){
+
+  const w=
+    words.find(
+      x=>x[0]===word
+    );
+
+  if(!w)return;
+
+  const saved=
+    state.saved.includes(word);
+
+  document.getElementById("wordResult").innerHTML=`
+
+    <div
+      class="card"
+      style="margin-top:14px"
+    >
+
+      <span class="tag">
+        ${w[1]}
+      </span>
+
+      <h2 class="word">
+        ${w[0]}
+      </h2>
+
+      <p>
+        <b>Meaning:</b>
+        ${w[2]}
+      </p>
+
+      <p>
+        <b>Example:</b>
+        ${w[3]}
+      </p>
+
+      <p>
+        <b>Similar words:</b>
+        ${w[4]}
+      </p>
+
+      <div class="actions">
+
+        <button
+          class="primary"
+          onclick="speak(${JSON.stringify(w[0])})"
+        >
+          🔊 Hear word
+        </button>
+
+        <button
+          class="secondary"
+          onclick="toggleWord('${w[0]}')"
+        >
+          ${saved?"★ Saved":"☆ Save word"}
+        </button>
+
+      </div>
+
+    </div>
+  `;
+}
+
+function toggleWord(w){
+
+  if(state.saved.includes(w)){
+
+    state.saved=
+      state.saved.filter(
+        x=>x!==w
+      );
+
+  }else{
+
+    state.saved.push(w);
+
+  }
+
+  save();
+
+  showWord(w);
+
+}
+
+function speak(text){
+
+  if("speechSynthesis" in window){
+
+    speechSynthesis.cancel();
+
+    const u=
+      new SpeechSynthesisUtterance(text);
+
+    u.rate=.9;
+
+    speechSynthesis.speak(u);
+
+  }
+
+}
+
+document
+  .getElementById("wordSearch")
+  .onclick=renderDict;
+
+document
+  .getElementById("wordInput")
+  .oninput=renderDict;
+
+
+/* =========================
+   PARENT CORNER
+========================= */
+
+function initParent(){
+
+  const daySelect=
+    document.getElementById("day");
+
+  daySelect.innerHTML=
+    DAYS
+      .map(
+        x=>`<option>${x}</option>`
+      )
+      .join("");
+
+  const subjectSelect=
+    document.getElementById("sub");
+
+  subjectSelect.innerHTML=
+    keys()
+      .map(
+        k=>`
+          <option value="${k}">
+            ${curriculum[k].name}
+          </option>
+        `
+      )
+      .join("");
+
+  topics();
+
+  subjectSelect.onchange=topics;
+
+  document
+    .getElementById("add")
+    .onclick=addSchedule;
+
+  document
+    .getElementById("clear")
+    .onclick=()=>{
+
+      if(
+        confirm(
+          "Clear the whole timetable?"
+        )
+      ){
+
+        state.schedule=[];
+
+        save();
+
+        renderParent();
+
+        renderHome();
+
+      }
+
+    };
+
+}
+
+function topics(){
+
+  const k=
+    document.getElementById("sub").value;
+
+  document.getElementById("topic").innerHTML=
+
+    `
+      <option value="auto">
+        Next topic automatically
+      </option>
+    `+
+
+    curriculum[k].lessons
+      .map(
+        l=>`
+          <option value="${l.title}">
+            ${l.title}
+          </option>
+        `
+      )
+      .join("");
+
+}
+
+function addSchedule(){
+
+  const dayValue=
+    document.getElementById("day").value;
+
+  const timeValue=
+    document.getElementById("time").value;
+
+  const subValue=
+    document.getElementById("sub").value;
+
+  const topicValue=
+    document.getElementById("topic").value;
+
+  const durationValue=
+    Number(
+      document.getElementById("duration").value
+    );
+
+  if(!timeValue){
+
+    toast("Please choose a time ⏰");
+
+    return;
+
+  }
+
+  state.schedule.push({
+
+    id:
+      Date.now()+
+      Math.random(),
+
+    day:dayValue,
+
+    time:timeValue,
+
+    sub:subValue,
+
+    topic:topicValue,
+
+    duration:durationValue
+
+  });
+
+  save();
+
+  renderParent();
+
+  renderHome();
+
+  toast("Session added! 🗓️");
+
+}
+
+function renderParent(){
+
+  let out="";
+
+  DAYS.forEach(day=>{
+
+    const sessions=
+      state.schedule
+        .filter(x=>x.day===day)
+        .sort(
+          (a,b)=>
+            a.time.localeCompare(b.time)
+        );
+
+    if(sessions.length){
+
+      out+=`
+        <h3>${day}</h3>
+      `;
+
+      out+=sessions
+        .map(x=>`
+
+          <div class="schedule">
+
+            <div>
+
+              <b>
+                ${timeText(x.time)}
+                •
+                ${curriculum[x.sub].emoji}
+                ${curriculum[x.sub].name}
+              </b>
+
+              <br>
+
+              <span class="tag">
+                ${
+                  x.topic==="auto"
+                  ?"Next topic"
+                  :x.topic
+                }
+                •
+                ${x.duration} min
+              </span>
+
+            </div>
+
+            <button
+              class="secondary"
+              onclick="removeSchedule('${x.id}')"
+            >
+              Remove
+            </button>
+
+          </div>
+
+        `)
+        .join("");
+
+    }
+
+  });
+
+  document.getElementById("week").innerHTML=
+
+    out||
+    `
+      <div class="empty">
+        No sessions yet.
+        Add one above. 🌟
+      </div>
+    `;
+
+  renderParentProgress();
+
+}
+
+function removeSchedule(id){
+
+  state.schedule=
+    state.schedule.filter(
+      x=>String(x.id)!==String(id)
+    );
+
+  save();
+
+  renderParent();
+
+  renderHome();
+
+  toast("Session removed.");
+
+}
+
+function renderParentProgress(){
+
+  const done=
+    Object.keys(
+      state.completed
+    ).length;
+
+  const total=
+    keys().reduce(
+      (n,k)=>
+        n+
+        curriculum[k].lessons.length,
+      0
+    );
+
+  const percent=
+    total
+      ?Math.round(done/total*100)
+      :0;
+
+  document.getElementById(
+    "parentProgress"
+  ).innerHTML=`
+
+    <div>
+
+      <b>
+        Overall completion:
+        ${percent}%
+      </b>
+
+      <div
+        class="bar"
+        style="margin-top:8px"
+      >
+        <i
+          style="width:${percent}%"
+        ></i>
+      </div>
+
+    </div>
+
+    <p>
+      ${done} of ${total}
+      lessons completed
+      • ${state.xp} XP
+      • ${state.stars} stars.
+    </p>
+
+  `;
+
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+function renderProgress(){
+
+  const done=
+    Object.keys(
+      state.completed
+    ).length;
+
+  document.getElementById(
+    "pxp"
+  ).textContent=state.xp;
+
+  document.getElementById(
+    "pstars"
+  ).textContent=state.stars;
+
+  document.getElementById(
+    "plessons"
+  ).textContent=done;
+
+  document.getElementById(
+    "progressList"
+  ).innerHTML=
+
+    keys()
+      .map(k=>{
+
+        const s=curriculum[k];
+
+        const completed=
+          s.lessons.filter(
+            (_,i)=>
+              state.completed[
+                k+"-"+i
+              ]
+          ).length;
+
+        const percent=
+          Math.round(
+            completed/
+            s.lessons.length*
+            100
+          );
+
+        return `
+
+          <div
+            style="margin:13px 0"
+          >
+
+            <b>
+              ${s.emoji}
+              ${s.name}
+            </b>
+
+            <span
+              style="float:right"
+            >
+              ${completed}/${s.lessons.length}
+            </span>
+
+            <div class="bar">
+
+              <i
+                style="width:${percent}%"
+              ></i>
+
+            </div>
+
+          </div>
+
+        `;
+
+      })
+      .join("");
+
+  let badges=[];
+
+  if(done>=1)
+    badges.push("🌱 First Lesson");
+
+  if(done>=5)
+    badges.push("⭐ Five Lessons");
+
+  if(done>=10)
+    badges.push("🚀 Ten Lessons");
+
+  if(state.xp>=500)
+    badges.push("💜 XP Explorer");
+
+  document.getElementById("badges").innerHTML=
+
+    badges.length
+
+      ?badges
+        .map(
+          x=>`
+            <span class="badge">
+              ${x}
+            </span>
+          `
+        )
+        .join("")
+
+      :`
+        <div class="empty">
+          Finish a lesson to earn
+          your first badge!
+        </div>
+      `;
+
+}
+
+function renderStats(){
+
+  document.getElementById("xp").textContent=
+    state.xp;
+
+  document.getElementById("stars").textContent=
+    state.stars;
+
+  renderProgress();
+
+  renderParentProgress();
+
+}
+
+
+/* =========================
+   QUICK CHALLENGE
+========================= */
+
+let challengeQuestions=[];
+let challengeIndex=0;
+let challengeScore=0;
+
+function challenge(){
+
+  let all=[];
+
+  Object.keys(Q).forEach(subject=>{
+
+    Object.values(Q[subject]).forEach(arr=>{
+
+      arr.forEach(q=>{
+
+        all.push([
+          subject,
+          q
+        ]);
+
+      });
+
+    });
+
+  });
+
+  all.sort(
+    ()=>Math.random()-.5
+  );
+
+  challengeQuestions=
+    all.slice(0,10);
+
+  challengeIndex=0;
+
+  challengeScore=0;
+
+  show("lesson");
+
+  challengeQ();
+
+}
+
+function challengeQ(){
+
+  if(
+    challengeIndex>=
+    challengeQuestions.length
+  ){
+
+    state.xp+=
+      challengeScore*10;
+
+    state.stars+=
+      challengeScore>=8
+        ?3
+        :challengeScore>=5
+          ?2
+          :1;
+
+    save();
+
+    document.getElementById(
+      "lessonArea"
+    ).innerHTML=`
+
+      <div
+        class="lesson"
+        style="text-align:center"
+      >
+
+        <div style="font-size:70px">
+          🎯
+        </div>
+
+        <h1>
+          Challenge complete!
+        </h1>
+
+        <p>
+          Score:
+          <b>
+            ${challengeScore}/
+            ${challengeQuestions.length}
+          </b>
+        </p>
+
+        <p>
+          ${
+            challengeScore>=8
+            ?"Amazing work! 🌟"
+            :challengeScore>=5
+              ?"Good job! Keep practising! 💪🏽"
+              :"Nice try! You can improve with practice! 🌱"
+          }
+        </p>
+
+        <button
+          class="primary"
+          onclick="show('home')"
+        >
+          Home
+        </button>
+
+      </div>
+    `;
+
+    return;
+  }
+
+  const q=
+    challengeQuestions[
+      challengeIndex
+    ][1];
+
+  document.getElementById(
+    "lessonArea"
+  ).innerHTML=`
+
+    <div class="teacherbox">
+
+      <div class="face">
+        👩🏽‍🏫
+      </div>
+
+      <div>
+
+        <h3>
+          Quick Challenge 🎯
+        </h3>
+
+        <p>
+          Question
+          ${challengeIndex+1}
+          of 10
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="lesson">
+
+      <h1>
+        ${q.q}
+      </h1>
+
+      ${
+        q.a.map(
+          (a,i)=>`
+
+            <button
+              class="option"
+              data-i="${i}"
+            >
+              ${String.fromCharCode(65+i)}.
+              ${a}
+            </button>
+
+          `
+        ).join("")
+      }
+
+      <div id="fb"></div>
+
+    </div>
+  `;
+
+  document
+    .querySelectorAll(".option")
+    .forEach(button=>{
+
+      button.onclick=()=>{
+
+        const i=
+          Number(
+            button.dataset.i
+          );
+
+        const correct=
+          i===q.c;
+
+        if(correct){
+          challengeScore++;
+        }
+
+        document
+          .querySelectorAll(".option")
+          .forEach(
+            (x,index)=>{
+
+              x.disabled=true;
+
+              if(index===q.c){
+                x.classList.add(
+                  "correct"
+                );
+              }
+
+              if(
+                index===i &&
+                !correct
+              ){
+
+                x.classList.add(
+                  "wrong"
+                );
+
+              }
+
+            }
+          );
+
+        const fb=
+          document.getElementById(
+            "fb"
+          );
+
+        fb.className=
+          "feedback "+
+          (
+            correct
+            ?"ok"
+            :"no"
+          );
+
+        fb.innerHTML=`
+
+          ${
+            correct
+            ?"🌟 Correct!"
+            :"💡 Keep practising!"
+          }
+
+          <br><br>
+
+          <button
+            class="secondary"
+            onclick="
+              challengeIndex++;
+              challengeQ();
+            "
+          >
+            Next →
+          </button>
+
+        `;
+
+      };
+
+    });
+
+}
+
+
+/* =========================
+   START NEXT LESSON
+========================= */
+
+document.getElementById(
+  "nextBtn"
+).onclick=()=>{
+
+  const sessions=
+    state.schedule
+      .filter(
+        x=>x.day===todayName()
+      )
+      .sort(
+        (a,b)=>
+          a.time.localeCompare(
+            b.time
+          )
+      );
+
+  if(sessions.length){
+
+    scheduled(
+      sessions[0].id
+    );
+
+    return;
+
+  }
+
+  for(
+    const k of keys()
+  ){
+
+    const i=
+      nextIndex(k);
+
+    if(
+      !state.completed[
+        k+"-"+i
+      ]
+    ){
+
+      openLesson(k,i);
+
+      return;
+
+    }
+
+  }
+
+  toast(
+    "You completed every lesson! 🏆"
+  );
+
+};
+
+
+document.getElementById(
+  "challengeBtn"
+).onclick=challenge;
+
+
+/* =========================
+   START APP
+========================= */
+
+initParent();
+
+renderStats();
+
+renderHome();
+
+renderSubjects();
+
+renderDict();
+
+renderParent();
+
+</script>
+
+</body>
+</html>
